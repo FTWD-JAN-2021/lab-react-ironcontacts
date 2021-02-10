@@ -11,17 +11,22 @@ function App() {
   const [stateCelebs, setStateCelebs] = useState(localContacts.splice(0, 5))
   const [otherCelebs, setOtherCelebs] = useState(localContacts)
 
-
+  const deleteContact = (i) => {
+    let newArr = [...stateCelebs]
+    newArr.splice(i, 1)
+    setStateCelebs(newArr)
+    console.log('delete')
+  }
   const ShowFive = () => {
     return stateCelebs.map((eachContact, i) => {
-      return <li key={i}><img src={eachContact.pictureUrl} /> {eachContact.name} {eachContact.popularity}</li>
+      return <li key={i}><img src={eachContact.pictureUrl} /> {eachContact.name} {eachContact.popularity} <button onClick={() => deleteContact(i)}>deleteContact</button></li>
     })
   }
 
   const addRandom = () => {
     if (otherCelebs.length <= 0) {
-    return
-  }
+      return
+    }
 
     console.log('hello')
     let randomN = Math.floor(Math.random() * otherCelebs.length)
@@ -32,18 +37,18 @@ function App() {
     setStateCelebs(tempCelebs)
     setOtherCelebs(tempAllCelebs)
   }
-  
+
 
   const sortByName = () => {
     let newArr2 = [...stateCelebs]
-    newArr2.sort((a,b) => {
+    newArr2.sort((a, b) => {
       if (a.name < b.name) {
         return -1;
-      } 
+      }
       if (a.name > b.name) {
         return 1;
       }
-        return 0;
+      return 0;
     })
 
 
@@ -53,10 +58,10 @@ function App() {
   }
 
   const sortByPopularity = () => {
-    let newArr =  [...stateCelebs]
-      newArr.sort((a,b) => {
+    let newArr = [...stateCelebs]
+    newArr.sort((a, b) => {
 
-        return b.popularity - a.popularity    
+      return b.popularity - a.popularity
       //  if(a.popularity < b.popularity){
       //    return 1
       //  }
@@ -67,8 +72,8 @@ function App() {
       //    return 0
       //  }
 
-     })
-    
+    })
+
     setStateCelebs(newArr)
   }
 
@@ -78,7 +83,7 @@ function App() {
       <button onClick={sortByName}>Sort By Name</button>
       <button onClick={sortByPopularity}>Sort By Popularity</button>
       {/* {showFive()} */}
-      <ShowFive/>
+      <ShowFive />
     </div>
   )
 }
