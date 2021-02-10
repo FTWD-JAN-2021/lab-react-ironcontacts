@@ -35,7 +35,20 @@ function App() {
   
 
   const sortByName = () => {
-      
+    let newArr2 = [...stateCelebs]
+    newArr2.sort((a,b) => {
+      if (a.name < b.name) {
+        return -1;
+      } 
+      if (a.name > b.name) {
+        return 1;
+      }
+        return 0;
+    })
+
+
+
+    setStateCelebs(newArr2)
     console.log('whatever')
   }
 
@@ -60,7 +73,7 @@ function App() {
   }
 
   return (
-    <div>Hello
+    <div>
       <button onClick={addRandom}>Add Random Actor</button>
       <button onClick={sortByName}>Sort By Name</button>
       <button onClick={sortByPopularity}>Sort By Popularity</button>
