@@ -10,6 +10,8 @@ function App() {
   let localContacts = [...contacts]
   const [stateCelebs, setStateCelebs] = useState(localContacts.splice(0, 5))
   const [otherCelebs, setOtherCelebs] = useState(localContacts)
+
+
   const ShowFive = () => {
     return stateCelebs.map((eachContact, i) => {
       return <li key={i}><img src={eachContact.pictureUrl} /> {eachContact.name} {eachContact.popularity}</li>
@@ -33,11 +35,28 @@ function App() {
   
 
   const sortByName = () => {
+      
     console.log('whatever')
   }
 
   const sortByPopularity = () => {
-    console.log('whatever2')
+    let newArr =  [...stateCelebs]
+      newArr.sort((a,b) => {
+
+        return b.popularity - a.popularity    
+      //  if(a.popularity < b.popularity){
+      //    return 1
+      //  }
+      //  if(a.popularity > b.popularity){
+      //    return -1
+      //  }
+      //  if(a.popularity == b.popularity){
+      //    return 0
+      //  }
+
+     })
+    
+    setStateCelebs(newArr)
   }
 
   return (
